@@ -9,9 +9,8 @@ public class Student {
         this.score = score;
     }
 
-    public String getName() {
-        return name;
-    }
+    // getter는 private 필드 값을 외부에서 읽을 수 있게 반환하는 메서드
+    public String getName() { return name; }
 
     public int getScore() {
         return score;
