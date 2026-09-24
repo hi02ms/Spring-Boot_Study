@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class StudentController {
 
@@ -19,7 +22,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/filter")
-    public Student[] filterStudents(@RequestParam int minScore) {
+    public List<Student> filterStudents(@RequestParam int minScore) {
 
         Student[] students = {
                 new Student("민수", 99),
@@ -27,22 +30,11 @@ public class StudentController {
                 new Student("준호", 95)
         };
 
-        int count = 0;
+        List<Student> filteredStudents = new ArrayList<>();
 
         for (Student student : students) {
             if (student.getScore() >= minScore) {
-                count++;
-            }
-        }
-
-        Student[] filteredStudents = new Student[count];
-
-        int index = 0;
-
-        for (Student student : students) {
-            if (student.getScore() >= minScore) {
-                filteredStudents[index] = student;
-                index ++;
+                filteredStudents.add(student);
             }
         }
 
