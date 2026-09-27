@@ -8,21 +8,21 @@ import  java.util.List;
 @Service
 public class StudentService {
 
-    private final Student[] students = {
-            new Student("민수", 99),
-            new Student("지수", 85),
-            new Student("준호", 95)
-    };
+    private final StudentRepository studentRepository;
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public Student[] getStudents() {
-        return students;
+        return studentRepository.findAll();
     }
 
     public List<Student> filterStudents(int minScore) {
 
         List<Student> filteredStudents = new ArrayList<>();
 
-        for (Student student : students) {
+        for (Student student : studentRepository.findAll()) {
 
             if (student.getScore() >= minScore) {
                 filteredStudents.add(student);
